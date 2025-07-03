@@ -3,8 +3,13 @@ import ToolCard from "./ToolCard";
 import AIWritingTool from "./tools/AIWritingTool";
 import CodeGeneratorTool from "./tools/CodeGeneratorTool";
 import AIChatTool from "./tools/AIChatTool";
+import ResumeBuilderTool from "./tools/ResumeBuilderTool";
+import LogoGeneratorTool from "./tools/LogoGeneratorTool";
+import VideoCreatorTool from "./tools/VideoCreatorTool";
+import SEOOptimizerTool from "./tools/SEOOptimizerTool";
+import AnalyticsDashboardTool from "./tools/AnalyticsDashboardTool";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Code, User, Star, Image, Video, Calendar, Settings, File } from "lucide-react";
+import { Code, User, Star, Image, Video, Calendar, Settings, File, BarChart3, Search } from "lucide-react";
 
 const ToolsSection = () => {
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
@@ -40,7 +45,7 @@ const ToolsSection = () => {
       description: "Create professional resumes with AI-powered suggestions and templates.",
       icon: <File className="w-6 h-6" />,
       category: "Career",
-      comingSoon: true
+      component: <ResumeBuilderTool />
     },
     {
       id: "logo",
@@ -48,7 +53,7 @@ const ToolsSection = () => {
       description: "Design unique logos and branding materials with AI-powered creativity.",
       icon: <Image className="w-6 h-6" />,
       category: "Design",
-      comingSoon: true
+      component: <LogoGeneratorTool />
     },
     {
       id: "video",
@@ -56,23 +61,23 @@ const ToolsSection = () => {
       description: "Generate videos from text, images, or scripts using advanced AI models.",
       icon: <Video className="w-6 h-6" />,
       category: "Media",
-      comingSoon: true
+      component: <VideoCreatorTool />
     },
     {
       id: "seo",
       title: "SEO Optimizer",
       description: "Optimize your content for search engines with AI-powered analysis.",
-      icon: <Settings className="w-6 h-6" />,
+      icon: <Search className="w-6 h-6" />,
       category: "Marketing",
-      comingSoon: true
+      component: <SEOOptimizerTool />
     },
     {
       id: "analytics",
       title: "Analytics Dashboard",
       description: "Get AI-powered insights and predictions from your business data.",
-      icon: <Calendar className="w-6 h-6" />,
+      icon: <BarChart3 className="w-6 h-6" />,
       category: "Analytics",
-      comingSoon: true
+      component: <AnalyticsDashboardTool />
     }
   ];
 
@@ -132,7 +137,7 @@ const ToolsSection = () => {
               icon={tool.icon}
               category={tool.category}
               onTryTool={() => openTool(tool.id)}
-              comingSoon={tool.comingSoon}
+              comingSoon={!tool.component}
             />
           ))}
         </div>
