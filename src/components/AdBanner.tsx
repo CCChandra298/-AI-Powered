@@ -2,18 +2,30 @@ import { useEffect } from 'react';
 
 const AdBanner = () => {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "//pl27075612.profitableratecpm.com/9d41cc88256997c4c5386904819dfacc/invoke.js";
-    script.async = true;
-    script.setAttribute("data-cfasync", "false");
+    // Set ad options
+    (window as any).atOptions = {
+      'key': '083127bd8f2e0e659744a5003e21eb62',
+      'format': 'iframe',
+      'height': 90,
+      'width': 728,
+      'params': {}
+    };
 
-    const container = document.getElementById("container-9d41cc88256997c4c5386904819dfacc");
-    if (container && !container.querySelector('script')) {
-      container.appendChild(script);
-    }
+    // Load the ad script
+    const script = document.createElement('script');
+    script.src = "//www.highperformanceformat.com/083127bd8f2e0e659744a5003e21eb62/invoke.js";
+    script.type = "text/javascript";
+    
+    document.head.appendChild(script);
   }, []);
 
-  return <div id="container-9d41cc88256997c4c5386904819dfacc" className="my-4" />;
+  return (
+    <div className="flex justify-center my-4">
+      <div style={{ width: '728px', height: '90px', textAlign: 'center' }}>
+        {/* Ad will be inserted here by the script */}
+      </div>
+    </div>
+  );
 };
 
 export default AdBanner;
