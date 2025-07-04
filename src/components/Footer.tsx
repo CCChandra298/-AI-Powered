@@ -1,4 +1,35 @@
+import { useEffect } from 'react';
 import { Code, Star, User, Settings } from "lucide-react";
+
+const FooterAdBanner = () => {
+  useEffect(() => {
+    const uniqueId = Math.random().toString(36).substr(2, 9);
+    (window as any)[`atOptions_footer_${uniqueId}`] = {
+      'key': '083127bd8f2e0e659744a5003e21eb62',
+      'format': 'iframe',
+      'height': 90,
+      'width': 728,
+      'params': {}
+    };
+
+    const script = document.createElement('script');
+    script.src = "//www.highperformanceformat.com/083127bd8f2e0e659744a5003e21eb62/invoke.js";
+    script.type = "text/javascript";
+    script.id = `footer-ad-${uniqueId}`;
+    
+    if (!document.getElementById(script.id)) {
+      document.head.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <div className="flex justify-center py-6 border-b border-border">
+      <div style={{ width: '728px', height: '90px', textAlign: 'center' }}>
+        {/* Footer ad will be inserted here */}
+      </div>
+    </div>
+  );
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -32,6 +63,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-background/95 backdrop-blur-sm border-t border-border">
+      {/* Footer Ad */}
+      <FooterAdBanner />
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Brand Section */}
